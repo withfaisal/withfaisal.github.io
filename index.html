@@ -242,24 +242,6 @@
     font-size:1.3rem; line-height:1.45; color:var(--ink); margin:0 0 12px; max-width:52ch;
   }
   .hero-role .to-add{color:var(--ink-3); font-style:italic}
-  /* Hero typing effect */
-  .typed-line{
-    margin:0 0 14px; min-height:1.5em;
-    font-size:1.08rem; font-weight:600; color:var(--accent);
-    display:flex; align-items:center; gap:2px;
-  }
-  .typed-cursor{
-    display:inline-block; width:2px; height:1.15em; background:var(--accent);
-    margin-left:3px; animation:typedBlink 1s step-end infinite;
-  }
-  @keyframes typedBlink{ 0%,100%{opacity:1} 50%{opacity:0} }
-  .sr-only{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-  }
-  @media (prefers-reduced-motion: reduce){
-    .typed-cursor{animation:none}
-  }
   .hero-meta{
     display:flex; flex-wrap:nowrap; gap:8px; margin:22px 0 26px;
   }
@@ -344,40 +326,6 @@
   .g-item.portrait{aspect-ratio:2/3}
   .g-item.landscape{aspect-ratio:3/2}
   .g-item img{width:100%; height:100%; object-fit:contain; display:block}
-  /* Featured gallery slideshow */
-  .slideshow{margin-bottom:26px}
-  .ss-stage{
-    position:relative; aspect-ratio:16/10; border-radius:var(--radius); overflow:hidden;
-    background:var(--surface-2); border:1px solid var(--line); box-shadow:var(--shadow);
-  }
-  @media (max-width:520px){ .ss-stage{aspect-ratio:4/3} }
-  .ss-slide{
-    position:absolute; inset:0; width:100%; height:100%; padding:0; border:0;
-    background:transparent; cursor:zoom-in; font-family:inherit;
-    opacity:0; transform:translateX(28px); pointer-events:none;
-    transition:opacity .6s ease, transform .6s ease;
-  }
-  .ss-slide.is-active{opacity:1; transform:translateX(0); pointer-events:auto}
-  .ss-slide img{width:100%; height:100%; object-fit:contain; display:block}
-  .ss-arrow{
-    position:absolute; top:50%; transform:translateY(-50%); z-index:3;
-    width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.35);
-    background:rgba(20,18,14,.45); color:#fff; font-size:1.5rem; line-height:1;
-    display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0;
-  }
-  .ss-arrow:hover{background:rgba(20,18,14,.7)}
-  .ss-prev{left:14px}
-  .ss-next{right:14px}
-  .ss-dots{display:flex; justify-content:center; gap:8px; margin-top:14px; flex-wrap:wrap}
-  .ss-dot{
-    width:10px; height:10px; min-height:10px; border-radius:999px; border:0; padding:0;
-    background:var(--line-strong); cursor:pointer; transition:width .3s ease, background .3s ease;
-  }
-  .ss-dot.is-active{width:26px; background:var(--accent)}
-  @media (prefers-reduced-motion: reduce){
-    .ss-slide{transition:none}
-    .ss-dot{transition:none}
-  }
   /* Lightbox photo viewer */
   .lightbox{
     position:fixed; inset:0; z-index:100; background:rgba(20,18,14,.93);
@@ -526,10 +474,6 @@
         <h1>Abdullah Mohammad Faisal</h1>
         <p class="hero-role">
           Media Production, Public Relations &amp; Research Enthusiast | Photographer | Storyteller
-        </p>
-        <p class="typed-line">
-          <span class="sr-only">Photographer, Storyteller and Researcher.</span>
-          <span aria-hidden="true"><span id="typedWord">Photographer</span><span class="typed-cursor"></span></span>
         </p>
         <p style="margin:0 0 26px; color:var(--ink-3); max-width:34rem;">
           First-year Media &amp; Communication undergraduate at Albukhary International University, Malaysia — fully funded Albukhary Foundation Scholar
@@ -826,13 +770,6 @@
         <p class="section-num">10</p>
         <h2>Photo gallery</h2>
       </div>
-      <div class="slideshow" id="slideshow">
-        <div class="ss-stage" id="ssStage">
-          <button class="ss-arrow ss-prev" id="ssPrev" type="button" aria-label="Previous photo">‹</button>
-          <button class="ss-arrow ss-next" id="ssNext" type="button" aria-label="Next photo">›</button>
-        </div>
-        <div class="ss-dots" id="ssDots"></div>
-      </div>
       <div id="galleryGrid">
         <div class="gallery-portrait">
           <button type="button" class="g-item portrait" aria-label="View photo">
@@ -1057,101 +994,6 @@
       if (e.key === "ArrowLeft") step(-1);
       if (e.key === "ArrowRight") step(1);
     });
-  })();
-</script>
-<script>
-  /* Hero typing effect — Photographer / Storyteller / Researcher */
-  (function(){
-    "use strict";
-    var el = document.getElementById("typedWord");
-    if (!el) return;
-    var words = ["Photographer", "Storyteller", "Researcher"];
-    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) { el.textContent = words[0]; return; }
-    var wi = 0, ci = words[0].length, deleting = false;
-    function tick(){
-      var word = words[wi];
-      var delay;
-      if (!deleting) {
-        ci++;
-        el.textContent = word.slice(0, ci);
-        delay = 95;
-        if (ci === word.length) { deleting = true; delay = 1700; }
-      } else {
-        ci--;
-        el.textContent = word.slice(0, ci);
-        delay = 45;
-        if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; delay = 350; }
-      }
-      setTimeout(tick, delay);
-    }
-    setTimeout(tick, 1700);
-  })();
-</script>
-<script>
-  /* Photo gallery — featured slideshow (built from the same 9 grid photos) */
-  (function(){
-    "use strict";
-    var stage = document.getElementById("ssStage");
-    var dotsWrap = document.getElementById("ssDots");
-    var grid = document.getElementById("galleryGrid");
-    var show = document.getElementById("slideshow");
-    if (!stage || !dotsWrap || !grid || !show) return;
-    var items = Array.prototype.slice.call(grid.querySelectorAll(".g-item"));
-    if (!items.length) return;
-
-    var slides = [], dots = [], idx = 0, timer = null;
-    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    items.forEach(function(item, i){
-      var img = item.querySelector("img");
-      var slide = document.createElement("button");
-      slide.type = "button";
-      slide.className = "ss-slide" + (i === 0 ? " is-active" : "");
-      slide.setAttribute("aria-label", "View photo " + (i + 1) + " of " + items.length + " in full size");
-      var sImg = document.createElement("img");
-      sImg.src = img.getAttribute("src");
-      sImg.alt = img.getAttribute("alt") || "";
-      if (i > 0) sImg.loading = "lazy";
-      slide.appendChild(sImg);
-      slide.addEventListener("click", function(){ item.click(); });
-      stage.insertBefore(slide, document.getElementById("ssPrev"));
-      slides.push(slide);
-
-      var dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "ss-dot" + (i === 0 ? " is-active" : "");
-      dot.setAttribute("aria-label", "Go to photo " + (i + 1));
-      dot.addEventListener("click", function(){ goTo(i); restart(); });
-      dotsWrap.appendChild(dot);
-      dots.push(dot);
-    });
-    function goTo(n){
-      slides[idx].classList.remove("is-active");
-      dots[idx].classList.remove("is-active");
-      idx = (n + slides.length) % slides.length;
-      slides[idx].classList.add("is-active");
-      dots[idx].classList.add("is-active");
-    }
-    function start(){
-      if (reduceMotion || timer) return;
-      timer = setInterval(function(){ goTo(idx + 1); }, 4000);
-    }
-    function stop(){
-      if (timer) { clearInterval(timer); timer = null; }
-    }
-    function restart(){ stop(); start(); }
-
-    document.getElementById("ssPrev").addEventListener("click", function(){ goTo(idx - 1); restart(); });
-    document.getElementById("ssNext").addEventListener("click", function(){ goTo(idx + 1); restart(); });
-    show.addEventListener("mouseenter", stop);
-    show.addEventListener("mouseleave", start);
-    show.addEventListener("focusin", stop);
-    show.addEventListener("focusout", start);
-    document.addEventListener("visibilitychange", function(){
-      if (document.hidden) stop(); else start();
-    });
-    start();
   })();
 </script>
 </body>
