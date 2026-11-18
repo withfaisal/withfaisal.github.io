@@ -323,7 +323,6 @@
     color:var(--accent-ink); background:var(--accent-soft);
   }
   .chip i.filled{background:var(--accent)}
-  .box.done{background:var(--accent); border-color:var(--accent); display:flex; align-items:center; justify-content:center; color:var(--on-accent); font-size:.85rem; font-weight:800; line-height:1}
 
   /* Booking — short card, same as Ali's */
   .booking-card{
@@ -347,21 +346,6 @@
   .contact-value a{color:var(--ink)}
   .contact-value a:hover{color:var(--accent-ink)}
   .contact-value.pending{color:var(--ink-3); font-weight:500; font-style:italic}
-
-  /* Checklist */
-  .checklist{padding:28px}
-  .checklist h3{margin:0 0 6px; font-size:1.05rem}
-  .checklist > p{margin:0 0 18px; color:var(--ink-2); font-size:.94rem}
-  .check-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px 22px}
-  @media (max-width:640px){ .check-grid{grid-template-columns:1fr} }
-  .check-item{display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--line)}
-  .check-item:last-child{border-bottom:none}
-  .box{
-    width:22px; height:22px; border-radius:6px; border:2px solid var(--line-strong);
-    flex-shrink:0; margin-top:2px; background:var(--surface);
-  }
-  .check-item strong{display:block; font-size:.94rem}
-  .check-item span{color:var(--ink-2); font-size:.87rem; display:block; line-height:1.45}
 
   footer{
     border-top:1px solid var(--line); padding:28px 0 36px; color:var(--ink-3); font-size:.88rem;
@@ -430,7 +414,6 @@
           <p>I am Abdullah Mohammad Faisal, a first-year student in the <strong>Bachelor of Media &amp; Communication (BMC)</strong> programme at <strong>Albukhary International University (AIU)</strong>. I am a <strong>fully funded Albukhary Foundation Scholar</strong>, with expected graduation in <strong>December 2029</strong>.</p>
           <p>My interests are in <strong>editing</strong> and <strong>public relations</strong> — how media is shaped, polished, and shared with an audience — alongside <strong>photography</strong>, <strong>research</strong>, and <strong>storytelling</strong>.</p>
           <p>Before university, I took on leadership and community roles in Bangladesh from <strong>2023 to 2025</strong> — serving as <strong>General Secretary of the Millat Photography Club</strong> and <strong>Assistant Director of the Millat Journalist Forum</strong>. Those roles gave me early, hands-on experience in photography, journalism, and working with a community.</p>
-          <p><em style="color:var(--ink-3)">More to add when you're ready: where you're from, the stories you care about, and what you're working towards.</em></p>
         </div>
         <div style="display:grid; gap:20px;">
           <div class="card prompt-box">
@@ -447,15 +430,6 @@
               <li><span class="k">Email</span><span class="v"><a href="mailto:withfaisal101@gmail.com">withfaisal101@gmail.com</a></span></li>
               <li><span class="k">Based in</span><span class="v">Alor Setar, Kedah, Malaysia</span></li>
               <li><span class="k">Languages</span><span class="v">Bengali (native) · English (fluent) · Malay (conversational)</span></li>
-            </ul>
-          </div>
-          <div class="card prompt-box">
-            <h3>What makes a good about section?</h3>
-            <ul>
-              <li>One line on where you're from</li>
-              <li>What you're studying and where</li>
-              <li>One interest or strength</li>
-              <li>What you want to do next</li>
             </ul>
           </div>
         </div>
@@ -513,7 +487,7 @@
       <div class="empty-card">
         <span class="tag tag-add">To add</span>
         <h3>Articles — to add</h3>
-        <p>No articles have been added yet. Send Mew an article's title, where it was published, and a link, and it will be listed here.</p>
+        <p>No articles have been added yet.</p>
       </div>
     </div>
   </section>
@@ -555,7 +529,6 @@
           </div>
         </article>
       </div>
-      <p style="margin:18px 0 0; color:var(--ink-3); font-size:.9rem;">More project slots can be added anytime — just send Mew the title, a short description, and a photo or link for each one.</p>
     </div>
   </section>
 
@@ -570,7 +543,7 @@
       <div class="empty-card">
         <span class="tag tag-add">To add</span>
         <h3>Experience — to add</h3>
-        <p>No experience entries have been added yet. Send Mew the role, organisation, and dates for any experience you'd like shown, and it will be added here.</p>
+        <p>No experience entries have been added yet.</p>
       </div>
     </div>
   </section>
@@ -657,7 +630,7 @@
       <div class="empty-card">
         <span class="tag tag-add">To add</span>
         <h3>Honors &amp; awards — to add</h3>
-        <p>No honors or awards have been added yet. Send Mew the name of any honor or award and the year, and it will be listed here.</p>
+        <p>No honors or awards have been added yet.</p>
       </div>
     </div>
   </section>
@@ -777,12 +750,12 @@
       <div class="empty-card">
         <span class="tag tag-add">To add</span>
         <h3>Curriculum vitae — to add</h3>
-        <p>No CV has been added yet. Send Mew your CV when it's ready and a link to view or download it will be placed here.</p>
+        <p>No CV has been added yet.</p>
       </div>
     </div>
   </section>
 
-  <!-- 12 CONTACT + CHECKLIST -->
+  <!-- 12 CONTACT -->
   <section id="contact">
     <div class="wrap">
       <div class="section-head">
@@ -831,30 +804,6 @@
           <span class="contact-value pending">To add</span>
         </div>
       </div>
-
-      <div class="card checklist" style="margin-top:20px">
-          <h3>To complete this portfolio, send Mew:</h3>
-          <p>You don't need everything at once — send what you have, and we'll fill the sections in step by step.</p>
-          <div class="check-grid" style="grid-template-columns:1fr;">
-            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Photo — added</strong><span>Your profile photo is now at the top of the page.</span></div></div>
-            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Short about you</strong><span>3–5 sentences, or just rough notes — Mew can help you shape them.</span></div></div>
-            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Programme &amp; university — added</strong><span>BMC, 2026 – Present, at Albukhary International University, Malaysia. Fully funded Albukhary Foundation Scholar, expected graduation December 2029. CGPA can still be added if you want it shown.</span></div></div>
-            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Previous education — added</strong><span>Alim (Higher Secondary Certificate, Equivalent), 2024 — Tamirul Millat Kamil Madrasha, Tongi, Bangladesh. Dakhil (Secondary School Certificate, Equivalent), 2022 — Islamia Kamil Madrasha, Cumilla, Bangladesh. Both under the Bangladesh Madrasah Education Board, GPA 5.00 / 5.00, now shown in Education.</span></div></div>
-            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Scholarship &amp; graduation — added</strong><span>Fully funded Albukhary Foundation Scholar — expected graduation December 2029, now shown in the hero, About, Education, and Contact sections.</span></div></div>
-            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Leadership &amp; community service — added</strong><span>General Secretary, Millat Photography Club, and Assistant Director, Millat Journalist Forum, 2023–2025 — now shown in the new Leadership section, hero, About, Quick Facts, and Skills.</span></div></div>
-            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Skills — added</strong><span>Photography &amp; Film, Content &amp; Audio, Languages (Bengali native, English fluent, Malay conversational), and Research — now shown in the Skills section and Quick Facts.</span></div></div>
-            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Projects</strong><span>Titles and short descriptions for anything you want to show.</span></div></div>
-            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Research</strong><span>Your research interests, and any publications or works in progress.</span></div></div>
-            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Articles</strong><span>Titles, where they were published, and links for any articles.</span></div></div>
-            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Experience</strong><span>Roles, organisations, and dates for any experience.</span></div></div>
-            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Honors &amp; awards</strong><span>Names and years of any honors or awards.</span></div></div>
-            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Photo gallery — added</strong><span>Nine photos are now shown in the Photo gallery section, each with a short caption.</span></div></div>
-            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Curriculum vitae</strong><span>Your CV, to link from the Curriculum vitae section.</span></div></div>
-            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Booking — added</strong><span>Free 20–30 minute peer-mentoring sessions — career guidance, academic help, or higher-study planning. The “Book a free session” button in the booking card above opens the Google Form “Book a session with Abdullah Mohammad Faisal” — every submitted request is saved in the form so bookings can be counted, and you confirm a time by email.</span></div></div>
-            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Email — added</strong><span>withfaisal101@gmail.com is now on the page. LinkedIn is still to add when you're ready.</span></div></div>
-            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>LinkedIn</strong><span>Your LinkedIn link, if you want it shown publicly.</span></div></div>
-          </div>
-        </div>
     </div>
   </section>
 </main>
