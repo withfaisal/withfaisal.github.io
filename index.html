@@ -52,6 +52,32 @@
       --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
     }
   }
+  /* Mobile always uses the light warm-paper palette — no dark mode on phones */
+  @media (max-width:900px){
+    :root{
+      color-scheme:light;
+      --bg:#FAF8F3;
+      --bg-alt:#F4F0E7;
+      --surface:#ffffff;
+      --surface-2:#EFE9DA;
+      --ink:#1C1A16;
+      --ink-2:#33302A;
+      --ink-3:#6F675C;
+      --line:#E6DFD2;
+      --line-strong:#D8D0BE;
+      --accent:#0E5B5B;
+      --accent-ink:#0A4444;
+      --on-accent:#ffffff;
+      --accent-soft:#E4EFEE;
+      --amber:#5C564A;
+      --amber-soft:#EFE9DA;
+      --dash:#C9C0AA;
+      --shadow:0 1px 2px rgba(28,26,22,.05), 0 8px 24px rgba(28,26,22,.06);
+    }
+    html,body{background:#FAF8F3}
+    body{overflow-x:hidden}
+    img{max-width:100%}
+  }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth; scroll-padding-top:84px}
   body{
@@ -97,11 +123,30 @@
     background:var(--accent); color:#fff; margin-left:6px; padding:8px 16px; border-radius:999px; font-weight:600;
   }
   .nav-links a:last-child:hover{background:var(--accent-ink); color:#fff}
-  @media (max-width:640px){
-    .brand{font-size:1.02rem}
-    .nav{flex-direction:column; align-items:flex-start; padding:10px 0 8px; min-height:unset; gap:6px}
-    .nav-links{justify-content:flex-start; margin-left:-8px}
-    .nav-links a{padding:8px 10px; font-size:.88rem}
+  .nav-toggle{display:none}
+  .hero-photo-wrap{display:contents}
+  .hero-location{display:none}
+  @media (max-width:900px){
+    .nav{flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:space-between; min-height:62px; gap:8px; padding:6px 0}
+    .brand{font-size:1.12rem; white-space:normal; line-height:1.2; flex:1 1 auto; min-width:0}
+    .nav-toggle{
+      display:inline-flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+      width:44px; height:44px; min-height:44px; padding:10px 9px; margin-left:auto; flex:0 0 auto;
+      background:transparent; border:0; border-radius:8px; cursor:pointer; color:var(--ink);
+    }
+    .nav-toggle span{display:block; width:24px; height:2px; background:var(--ink); border-radius:2px}
+    .nav-toggle:hover{background:color-mix(in srgb, var(--ink) 5%, transparent)}
+    .nav-links{
+      display:none; width:100%; flex:1 1 100%; flex-direction:column; flex-wrap:nowrap;
+      align-items:stretch; justify-content:flex-start; gap:2px;
+      padding:10px 0 14px; margin-top:6px; border-top:1px solid var(--line);
+    }
+    .nav-links.open{display:flex}
+    .nav-links a{display:flex; width:100%; padding:10px 8px; font-size:.95rem; min-height:44px}
+    .nav-links a:last-child{margin:8px 0 0; width:auto; align-self:flex-start; padding:10px 18px; color:#fff}
+  }
+  @media (max-width:520px){
+    .brand{font-size:1.05rem}
   }
 
   /* Hero */
@@ -110,9 +155,25 @@
     display:grid; grid-template-columns: 1.5fr .9fr; gap:56px; align-items:center;
   }
   @media (max-width:900px){
-    .hero{padding:52px 0 44px}
-    .hero-grid{grid-template-columns:1fr; gap:40px}
-    .profile-photo{order:-1}
+    .hero{padding:32px 0 44px}
+    .hero-grid{display:flex; flex-direction:column; gap:0; align-items:stretch}
+    .hero-photo-wrap{
+      display:flex; flex-direction:column; align-items:center; order:-1;
+      width:100%; margin:0 0 28px;
+    }
+    .profile-photo{width:min(320px,84vw); max-width:100%; justify-self:auto}
+    .hero-location{
+      display:block; margin:14px 0 0; text-align:center;
+      color:var(--ink-3); font-size:.95rem; line-height:1.4;
+    }
+    .hero-text{width:100%; min-width:0}
+    .eyebrow{font-size:.78rem; line-height:1.7; letter-spacing:.13em; overflow-wrap:break-word; margin-bottom:12px}
+    h1{font-size:clamp(2.35rem, 11vw, 3rem)}
+    .hero-role{font-size:1.22rem}
+  }
+  @media (max-width:520px){
+    .wrap{padding:0 20px}
+    .profile-photo{width:min(300px,86vw)}
   }
   .photo-slot{
     width:min(300px,72vw); aspect-ratio:4/5; border-radius:var(--radius);
@@ -345,7 +406,8 @@
 <header>
   <div class="wrap nav">
     <a class="brand" href="#top" style="text-decoration:none">Abdullah <span>Mohammad Faisal</span></a>
-    <nav class="nav-links" aria-label="Portfolio sections">
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks" aria-label="Portfolio sections">
       <a href="#about">About</a>
       <a href="#research">Research</a>
       <a href="#articles">Articles</a>
@@ -367,7 +429,7 @@
   <!-- HERO -->
   <div class="wrap hero">
     <div class="hero-grid">
-      <div>
+      <div class="hero-text">
         <p class="eyebrow">Media &amp; Communication · Photography · Research</p>
         <h1>Abdullah Mohammad Faisal</h1>
         <p class="hero-role">
@@ -382,7 +444,10 @@
           <a class="btn btn-ghost" href="#contact">Get in touch</a>
         </div>
       </div>
-      <img class="profile-photo" src="assets/profile.jpg" alt="Portrait of Abdullah Mohammad Faisal at an evening festival with colourful lights and flags behind him" width="300" height="375" />
+      <div class="hero-photo-wrap">
+        <img class="profile-photo" src="assets/profile.jpg" alt="Portrait of Abdullah Mohammad Faisal at an evening festival with colourful lights and flags behind him" width="300" height="375" />
+        <p class="hero-location">Alor Setar, Kedah, Malaysia</p>
+      </div>
     </div>
   </div>
 
@@ -802,6 +867,29 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  })();
+</script>
+<script>
+  /* Mobile hamburger menu */
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('navLinks');
+    if (!toggle || !nav) return;
+    function closeMenu(){
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    }
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    nav.addEventListener('click', function(e){
+      var t = e.target;
+      while (t && t !== nav && t.tagName !== 'A') t = t.parentNode;
+      if (t && t.tagName === 'A') closeMenu();
+    });
   })();
 </script>
 <script>
