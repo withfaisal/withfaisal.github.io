@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Abdullah Mohammad Faisal — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF8F3;
+    --bg-alt:#F4F0E7;
+    --surface:#ffffff;
+    --surface-2:#EFE9DA;
+    --ink:#1C1A16;
+    --ink-2:#33302A;
+    --ink-3:#6F675C;
+    --line:#E6DFD2;
+    --line-strong:#D8D0BE;
+    --accent:#0E5B5B;
+    --accent-ink:#0A4444;
+    --on-accent:#ffffff;
+    --accent-soft:#E4EFEE;
+    --amber:#5C564A;
+    --amber-soft:#EFE9DA;
+    --dash:#C9C0AA;
+    --radius:14px;
+    --radius-sm:10px;
+    --shadow:0 1px 2px rgba(28,26,22,.05), 0 8px 24px rgba(28,26,22,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#191713;
+      --bg-alt:#201D18;
+      --surface:#24211B;
+      --surface-2:#2B2720;
+      --ink:#EDE8DC;
+      --ink-2:#CFC8B8;
+      --ink-3:#A79E8C;
+      --line:#38332A;
+      --line-strong:#4A4436;
+      --accent:#6FB3A9;
+      --accent-ink:#9CC7C0;
+      --on-accent:#0B2422;
+      --accent-soft:#223330;
+      --amber:#D8CDB2;
+      --amber-soft:#33302A;
+      --dash:#554E3F;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:84px}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size:16.5px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (max-width:520px){ body{font-size:16px} }
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  button, [role="button"], select, summary, input:not([type="checkbox"],[type="radio"]){min-height:2.25rem}
+  .wrap{max-width:1060px; margin:0 auto; padding:0 24px}
+
+  /* Nav */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    min-height:68px;
+  }
+  .brand{
+    font-family:"Source Serif 4", Georgia, serif;
+    font-weight:700; font-size:1.25rem; letter-spacing:.01em; color:var(--ink);
+    white-space:nowrap;
+  }
+  .brand span{color:inherit}
+  .nav-links{display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; align-items:center}
+  .nav-links a{
+    color:var(--ink-3); font-size:.84rem; font-weight:500;
+    padding:8px 8px; border-radius:8px; display:inline-flex; align-items:center; min-height:40px;
+  }
+  .nav-links a:hover{background:color-mix(in srgb, var(--ink) 5%, transparent); color:var(--ink); text-decoration:none}
+  .nav-links a.active{background:var(--accent-soft); color:var(--accent-ink)}
+  .nav-links a:last-child{
+    background:var(--accent); color:#fff; margin-left:6px; padding:8px 16px; border-radius:999px; font-weight:600;
+  }
+  .nav-links a:last-child:hover{background:var(--accent-ink); color:#fff}
+  @media (max-width:640px){
+    .brand{font-size:1.02rem}
+    .nav{flex-direction:column; align-items:flex-start; padding:10px 0 8px; min-height:unset; gap:6px}
+    .nav-links{justify-content:flex-start; margin-left:-8px}
+    .nav-links a{padding:8px 10px; font-size:.88rem}
+  }
+
+  /* Hero */
+  .hero{padding:72px 0 56px; border-bottom:1px solid var(--line)}
+  .hero-grid{
+    display:grid; grid-template-columns: 1.5fr .9fr; gap:56px; align-items:center;
+  }
+  @media (max-width:900px){
+    .hero{padding:52px 0 44px}
+    .hero-grid{grid-template-columns:1fr; gap:40px}
+    .profile-photo{order:-1}
+  }
+  .photo-slot{
+    width:min(300px,72vw); aspect-ratio:4/5; border-radius:var(--radius);
+    background:var(--surface-2);
+    border:2px dashed var(--dash);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    text-align:center; padding:20px; justify-self:center;
+  }
+  .initials{
+    width:84px; height:84px; border-radius:50%;
+    background:var(--accent); color:var(--on-accent);
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Source Serif 4", Georgia, serif; font-weight:700; font-size:1.7rem; letter-spacing:.02em;
+  }
+  .photo-slot p{margin:0; font-size:.82rem; color:var(--ink-3); line-height:1.45}
+  .photo-slot strong{color:var(--ink-2); font-size:.88rem}
+  .profile-photo{
+    width:min(300px,72vw); height:auto; aspect-ratio:4/5; border-radius:var(--radius); display:block;
+    object-fit:cover; object-position:center 22%;
+    border:1px solid var(--line); box-shadow:var(--shadow);
+    background:var(--surface-2);
+    justify-self:center;
+  }
+
+  .eyebrow{
+    font-size:.8rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 14px;
+  }
+  h1{
+    font-family:"Source Serif 4", Georgia, serif;
+    font-size:clamp(2.6rem, 5.5vw, 4rem);
+    line-height:1.08; letter-spacing:-.01em; margin:0 0 16px; font-weight:700;
+  }
+  .hero-role{
+    font-family:"Source Serif 4", Georgia, serif;
+    font-size:1.3rem; line-height:1.45; color:var(--ink); margin:0 0 12px; max-width:52ch;
+  }
+  .hero-role .to-add{color:var(--ink-3); font-style:italic}
+  .hero-meta{
+    display:flex; flex-wrap:nowrap; gap:8px; margin:22px 0 26px;
+  }
+  @media (max-width:640px){
+    .hero-meta{flex-wrap:wrap}
+  }
+  .chip{
+    display:inline-flex; align-items:center; gap:7px; white-space:nowrap;
+    border:1px solid var(--line); background:var(--surface);
+    padding:6px 14px; border-radius:999px; font-size:.85rem; font-weight:500; color:var(--ink-2);
+  }
+  .chip i{display:none}
+  .chip.pending{border-style:dashed; color:var(--ink-3)}
+  .chip.pending i{background:var(--amber)}
+  .hero-actions{display:flex; flex-wrap:wrap; gap:12px}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    min-height:48px; padding:12px 26px; border-radius:999px;
+    font-weight:600; font-size:.95rem; border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{background:var(--accent); color:#fff; border-color:var(--accent)}
+  .btn-primary:hover{background:var(--accent-ink); text-decoration:none}
+  .btn-ghost{background:transparent; color:var(--accent-ink); border-color:var(--accent)}
+  .btn-ghost:hover{text-decoration:none; background:var(--accent-soft); color:var(--accent-ink)}
+
+  /* Sections */
+  section{padding:64px 0; scroll-margin-top:84px; border-bottom:1px solid var(--line)}
+  section.alt{background:var(--bg-alt)}
+  @media (max-width:520px){ section{padding:48px 0} }
+  .section-head{margin-bottom:28px; max-width:680px}
+  .section-num{
+    font-family:"Source Serif 4", Georgia, serif; font-weight:700; font-size:.95rem;
+    color:var(--accent); margin:0 0 6px; letter-spacing:.2em;
+  }
+  .section-head h2{
+    font-family:"Source Serif 4", Georgia, serif; display:inline-block;
+    font-size:2rem; line-height:1.15; letter-spacing:-.01em; margin:0;
+    padding-bottom:14px; border-bottom:2px solid var(--ink);
+  }
+  .section-head p{margin:16px 0 0; color:var(--ink-3); font-size:1.05rem; max-width:38rem}
+
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+  .empty-card{
+    border:1.5px dashed var(--dash); background:var(--surface);
+    border-radius:var(--radius); padding:26px;
+  }
+  .empty-card h3{margin:0 0 6px; font-size:1.05rem}
+  .empty-card p{margin:0; color:var(--ink-2); font-size:.94rem}
+  .tag{
+    display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    padding:4px 12px; border-radius:999px; margin-bottom:12px;
+  }
+  .tag-add{background:var(--amber-soft); color:var(--amber)}
+  .tag-type{background:var(--accent-soft); color:var(--accent-ink)}
+
+  /* Placeholder blocks (new sections) */
+  .stack{display:grid; gap:18px}
+  .sub-block h3{
+    font-family:"Source Serif 4", Georgia, serif; font-size:1.25rem; line-height:1.2;
+    margin:0 0 12px;
+  }
+  /* Photo gallery — images only, grouped by shape: tall portraits first, then wide landscapes.
+     Each group uses one consistent tile ratio; object-fit:contain keeps the full photo visible, no cropping. */
+  .gallery-portrait{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; align-items:start; margin-bottom:14px}
+  .gallery-landscape{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; align-items:start}
+  @media (max-width:900px){
+    .gallery-portrait{grid-template-columns:repeat(2,1fr)}
+    .gallery-landscape{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:520px){
+    .gallery-portrait{grid-template-columns:repeat(2,1fr)}
+    .gallery-landscape{grid-template-columns:1fr}
+  }
+  .g-item{
+    position:relative; display:block; width:100%; border-radius:12px; overflow:hidden;
+    cursor:zoom-in;
+    background:var(--surface-2); border:1px solid var(--line); padding:0; font-family:inherit;
+  }
+  .g-item.portrait{aspect-ratio:2/3}
+  .g-item.landscape{aspect-ratio:3/2}
+  .g-item img{width:100%; height:100%; object-fit:contain; display:block}
+  /* Lightbox photo viewer */
+  .lightbox{
+    position:fixed; inset:0; z-index:100; background:rgba(20,18,14,.93);
+    display:none; align-items:center; justify-content:center; gap:12px; padding:24px;
+  }
+  .lightbox.open{display:flex}
+  .lb-fig{margin:0; max-width:min(920px,88vw); text-align:center}
+  .lb-fig img{width:auto; height:auto; max-width:100%; max-height:90vh; object-fit:contain; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,.5); margin:0 auto; display:block}
+  .lb-close,.lb-prev,.lb-next{
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); color:#fff;
+    width:46px; height:46px; border-radius:50%; font-size:1.4rem; cursor:pointer; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; line-height:1;
+  }
+  .lb-close:hover,.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.22)}
+  .lb-close{position:absolute; top:20px; right:24px}
+  @media (max-width:520px){ .lb-prev,.lb-next{display:none} }
+
+  /* About */
+  .about-grid{display:grid; grid-template-columns:1.5fr .9fr; gap:20px; align-items:start}
+  @media (max-width:820px){ .about-grid{grid-template-columns:1fr} }
+  .about-main{padding:28px}
+  .about-main p{margin:0 0 14px; color:var(--ink-2)}
+  .about-main p:last-child{margin-bottom:0}
+  .prompt-box{padding:24px}
+  .prompt-box h3{margin:0 0 12px; font-size:.95rem}
+  .prompt-box ul{margin:0; padding-left:18px; color:var(--ink-2); font-size:.92rem}
+  .prompt-box li{margin:6px 0}
+  .fact-list{list-style:none; margin:0; padding:0}
+  .fact-list li{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:11px 0; border-bottom:1px solid var(--line); font-size:.92rem;
+  }
+  .fact-list li:last-child{border-bottom:none}
+  .fact-list dt, .fact-list .k{color:var(--ink-3); font-weight:600; flex-shrink:0}
+  .fact-list .v{font-weight:600; text-align:right}
+  .fact-list .v.pending{color:var(--ink-3); font-weight:500; font-style:italic}
+
+  /* Timeline / Education */
+  .timeline{display:grid; gap:16px}
+  .tl-item{
+    display:grid; grid-template-columns:150px 1fr; gap:28px;
+    padding:22px 0; align-items:start;
+    background:transparent; border:none; border-bottom:1px dashed var(--line);
+    border-radius:0; box-shadow:none;
+  }
+  .timeline .tl-item:last-child{border-bottom:0}
+  @media (max-width:640px){ .tl-item{grid-template-columns:1fr; gap:6px} }
+  .tl-date{font-size:.85rem; font-weight:600; color:var(--accent-ink); padding-top:3px}
+  .tl-date.pending{color:var(--ink-3); font-weight:600; font-style:italic}
+  .tl-item h3{margin:0 0 2px; font-family:"Source Serif 4", Georgia, serif; font-size:1.2rem}
+  .tl-item h3 .placeholder{color:var(--ink-3); font-weight:600}
+  .tl-item .where{color:var(--ink-3); font-weight:600; font-size:.9rem; margin:0 0 6px}
+  .tl-item p.desc{margin:0; color:var(--ink-2); font-size:.96rem}
+
+  /* Projects */
+  .projects-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:20px}
+  @media (max-width:900px){ .projects-grid{grid-template-columns:1fr} }
+  .project-card{overflow:hidden; display:flex; flex-direction:column}
+  .project-cover{
+    height:150px; background:var(--surface-2); border-bottom:1.5px dashed var(--dash);
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px; color:var(--ink-3);
+    font-size:.82rem; font-weight:600; text-align:center; padding:16px;
+  }
+  .project-cover .num{
+    font-family:"Source Serif 4", Georgia, serif; font-size:1.6rem; font-weight:700; color:var(--line-strong); line-height:1;
+  }
+  .project-body{padding:24px 28px 28px; display:flex; flex-direction:column; gap:10px; flex:1}
+  .project-body h3{margin:0; font-family:"Source Serif 4", Georgia, serif; font-size:1.4rem; line-height:1.25}
+  .project-body h3 .placeholder{color:var(--ink-3)}
+  .project-body p{margin:0; color:var(--ink-2); font-size:.92rem; flex:1}
+  .project-links{font-size:.88rem; font-weight:700; color:var(--ink-3); padding-top:6px; border-top:1px solid var(--line); margin-top:6px}
+
+  /* Skills */
+  .skills-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+  @media (max-width:820px){ .skills-grid{grid-template-columns:1fr} }
+  .skill-card{padding:24px 26px}
+  .skill-card h3{margin:0 0 8px; font-family:"Source Serif 4", Georgia, serif; font-size:1.1rem; color:var(--accent-ink); display:flex; align-items:center; gap:10px}
+  .skill-card p{margin:0 0 14px; color:var(--ink-2); font-size:.94rem}
+  .skill-tags{display:flex; flex-wrap:wrap; gap:8px}
+  .skill-tag{
+    font-size:.78rem; font-weight:600; padding:4px 10px; border-radius:6px;
+    border:1.5px dashed var(--dash); color:var(--ink-3); background:var(--surface-2);
+  }
+  .skill-tag.real{
+    border-style:solid; border-color:transparent;
+    color:var(--accent-ink); background:var(--accent-soft);
+  }
+  .chip i.filled{background:var(--accent)}
+  .box.done{background:var(--accent); border-color:var(--accent); display:flex; align-items:center; justify-content:center; color:var(--on-accent); font-size:.85rem; font-weight:800; line-height:1}
+
+  /* Booking — short card, same as Ali's */
+  .booking-card{
+    display:flex; align-items:center; justify-content:space-between; gap:28px;
+    padding:28px 32px; margin-bottom:28px; scroll-margin-top:96px;
+  }
+  .booking-card h3{font-family:"Source Serif 4", Georgia, serif; font-size:1.3rem; margin:0 0 6px; line-height:1.25}
+  .booking-card p{margin:0; color:var(--ink-3); font-size:.95rem; max-width:34rem}
+  .booking-card .booking-count-line{margin:10px 0 0; font-size:.9rem; font-weight:600; color:var(--accent-ink)}
+  .booking-card .btn{white-space:nowrap}
+  @media (max-width:900px){ .booking-card{flex-direction:column; align-items:flex-start} }
+  @media (max-width:640px){ .booking-card{padding:22px} }
+
+  /* Contact — 2-column card grid */
+  .contact-cards{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:640px){ .contact-cards{grid-template-columns:1fr} }
+  .contact-card{padding:24px 30px; display:flex; flex-direction:column; gap:9px}
+  @media (max-width:640px){ .contact-card{padding:20px 22px} }
+  .contact-label{font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  .contact-value{font-size:1.06rem; font-weight:600; color:var(--ink); line-height:1.4; overflow-wrap:anywhere}
+  .contact-value a{color:var(--ink)}
+  .contact-value a:hover{color:var(--accent-ink)}
+  .contact-value.pending{color:var(--ink-3); font-weight:500; font-style:italic}
+
+  /* Checklist */
+  .checklist{padding:28px}
+  .checklist h3{margin:0 0 6px; font-size:1.05rem}
+  .checklist > p{margin:0 0 18px; color:var(--ink-2); font-size:.94rem}
+  .check-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px 22px}
+  @media (max-width:640px){ .check-grid{grid-template-columns:1fr} }
+  .check-item{display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--line)}
+  .check-item:last-child{border-bottom:none}
+  .box{
+    width:22px; height:22px; border-radius:6px; border:2px solid var(--line-strong);
+    flex-shrink:0; margin-top:2px; background:var(--surface);
+  }
+  .check-item strong{display:block; font-size:.94rem}
+  .check-item span{color:var(--ink-2); font-size:.87rem; display:block; line-height:1.45}
+
+  footer{
+    border-top:1px solid var(--line); padding:28px 0 36px; color:var(--ink-3); font-size:.88rem;
+  }
+  .footer-inner{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+  .footer-inner strong{color:var(--ink-2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" style="text-decoration:none">Abdullah <span>Mohammad Faisal</span></a>
+    <nav class="nav-links" aria-label="Portfolio sections">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#articles">Articles</a>
+      <a href="#projects">Selected projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#honors">Honors &amp; awards</a>
+      <a href="#skills">Skills</a>
+      <a href="#gallery">Photo gallery</a>
+      <a href="#cv">Curriculum vitae</a>
+      <a href="#contact">Contact</a>
+      <a href="#book">Book a session</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Media &amp; Communication · Photography · Research</p>
+        <h1>Abdullah Mohammad Faisal</h1>
+        <p class="hero-role">
+          Media Production, Public Relations &amp; Research Enthusiast | Photographer | Storyteller
+        </p>
+        <p style="margin:0 0 26px; color:var(--ink-3); max-width:34rem;">
+          First-year Media &amp; Communication undergraduate at Albukhary International University, Malaysia — fully funded Albukhary Foundation Scholar
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-ghost" href="#book">Book a session</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <img class="profile-photo" src="assets/profile.jpg" alt="Portrait of Abdullah Mohammad Faisal at an evening festival with colourful lights and flags behind him" width="300" height="375" />
+    </div>
+  </div>
+
+  <!-- 01 ABOUT -->
+  <section id="about" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">01</p>
+        <h2>About me</h2>
+        <p>First-year BMC student at AIU and fully funded Albukhary Foundation Scholar — media production, public relations &amp; research enthusiast, photographer and storyteller.</p>
+      </div>
+      <div class="about-grid">
+        <div class="card about-main">
+          <span class="tag tag-type">BMC · First Year · AIU · Albukhary Foundation Scholar</span>
+          <p>I am Abdullah Mohammad Faisal, a first-year student in the <strong>Bachelor of Media &amp; Communication (BMC)</strong> programme at <strong>Albukhary International University (AIU)</strong>. I am a <strong>fully funded Albukhary Foundation Scholar</strong>, with expected graduation in <strong>December 2029</strong>.</p>
+          <p>My interests are in <strong>editing</strong> and <strong>public relations</strong> — how media is shaped, polished, and shared with an audience — alongside <strong>photography</strong>, <strong>research</strong>, and <strong>storytelling</strong>.</p>
+          <p>Before university, I took on leadership and community roles in Bangladesh from <strong>2023 to 2025</strong> — serving as <strong>General Secretary of the Millat Photography Club</strong> and <strong>Assistant Director of the Millat Journalist Forum</strong>. Those roles gave me early, hands-on experience in photography, journalism, and working with a community.</p>
+          <p><em style="color:var(--ink-3)">More to add when you're ready: where you're from, the stories you care about, and what you're working towards.</em></p>
+        </div>
+        <div style="display:grid; gap:20px;">
+          <div class="card prompt-box">
+            <h3>Quick facts</h3>
+            <ul class="fact-list">
+              <li><span class="k">Name</span><span class="v">Abdullah Mohammad Faisal</span></li>
+              <li><span class="k">Programme</span><span class="v">Bachelor of Media &amp; Communication (BMC)</span></li>
+              <li><span class="k">Year</span><span class="v">First year</span></li>
+              <li><span class="k">University</span><span class="v">Albukhary International University (AIU)</span></li>
+              <li><span class="k">Scholarship</span><span class="v">Albukhary Foundation Scholar — Fully Funded</span></li>
+              <li><span class="k">Graduation</span><span class="v">December 2029 (expected)</span></li>
+              <li><span class="k">Focus</span><span class="v">Editing · Public Relations</span></li>
+              <li><span class="k">Leadership</span><span class="v">General Secretary, Millat Photography Club · Assistant Director, Millat Journalist Forum (2023–2025)</span></li>
+              <li><span class="k">Email</span><span class="v"><a href="mailto:withfaisal101@gmail.com">withfaisal101@gmail.com</a></span></li>
+              <li><span class="k">Based in</span><span class="v">Alor Setar, Kedah, Malaysia</span></li>
+              <li><span class="k">Languages</span><span class="v">Bengali (native) · English (fluent) · Malay (conversational)</span></li>
+            </ul>
+          </div>
+          <div class="card prompt-box">
+            <h3>What makes a good about section?</h3>
+            <ul>
+              <li>One line on where you're from</li>
+              <li>What you're studying and where</li>
+              <li>One interest or strength</li>
+              <li>What you want to do next</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 RESEARCH -->
+  <section id="research">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">02</p>
+        <h2>Research</h2>
+        <p>Research interests and publications will be added here as they develop.</p>
+      </div>
+      <div class="stack">
+        <div class="sub-block">
+          <h3>Research interests</h3>
+          <div class="skill-tags">
+            <span class="skill-tag real">Contemporary Media</span>
+            <span class="skill-tag real">Semantics in Journalism</span>
+            <span class="skill-tag real">Journalism</span>
+            <span class="skill-tag real">Communication</span>
+            <span class="skill-tag real">AI &amp; Media</span>
+            <span class="skill-tag real">Narratives</span>
+            <span class="skill-tag real">News Framing</span>
+            <span class="skill-tag real">PR</span>
+            <span class="skill-tag real">Politics</span>
+            <span class="skill-tag real">Social Sciences</span>
+            <span class="skill-tag real">Humanities</span>
+            <span class="skill-tag real">Human Rights</span>
+            <span class="skill-tag real">Global Citizenship</span>
+          </div>
+        </div>
+        <div class="sub-block">
+          <h3>Publications &amp; works in progress</h3>
+          <div class="card" style="padding:26px">
+            <span class="tag tag-type">In preparation</span>
+            <h3 style="margin:0 0 6px; font-family:'Source Serif 4', Georgia, serif; font-size:1.25rem; line-height:1.25;">Conference paper (with collaborators)</h3>
+            <p style="margin:0; color:var(--ink-2); font-size:.94rem;">International Islamic University Chittagong (IIUC) conference</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 ARTICLES -->
+  <section id="articles" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">03</p>
+        <h2>Articles</h2>
+        <p>Written pieces and articles will be added here.</p>
+      </div>
+      <div class="empty-card">
+        <span class="tag tag-add">To add</span>
+        <h3>Articles — to add</h3>
+        <p>No articles have been added yet. Send Mew an article's title, where it was published, and a link, and it will be listed here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 SELECTED PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">04</p>
+        <h2>Selected projects</h2>
+        <p>Coursework, media work, presentations, writing, photography — anything you want lecturers or collaborators to see.</p>
+      </div>
+      <div class="projects-grid">
+        <article class="card project-card">
+          <div class="project-cover"><span class="num">01</span><span>Cover image — to add</span></div>
+          <div class="project-body">
+            <span class="tag tag-type" style="align-self:flex-start">Project type — to add</span>
+            <h3><span class="placeholder">Project title</span></h3>
+            <p>Short description — what it was, what you did, and what you learned. 2–3 lines is enough.</p>
+            <div class="project-links">Link / files — to add</div>
+          </div>
+        </article>
+        <article class="card project-card">
+          <div class="project-cover"><span class="num">02</span><span>Cover image — to add</span></div>
+          <div class="project-body">
+            <span class="tag tag-type" style="align-self:flex-start">Project type — to add</span>
+            <h3><span class="placeholder">Project title</span></h3>
+            <p>Short description — what it was, what you did, and what you learned. 2–3 lines is enough.</p>
+            <div class="project-links">Link / files — to add</div>
+          </div>
+        </article>
+        <article class="card project-card">
+          <div class="project-cover"><span class="num">03</span><span>Cover image — to add</span></div>
+          <div class="project-body">
+            <span class="tag tag-type" style="align-self:flex-start">Project type — to add</span>
+            <h3><span class="placeholder">Project title</span></h3>
+            <p>Short description — what it was, what you did, and what you learned. 2–3 lines is enough.</p>
+            <div class="project-links">Link / files — to add</div>
+          </div>
+        </article>
+      </div>
+      <p style="margin:18px 0 0; color:var(--ink-3); font-size:.9rem;">More project slots can be added anytime — just send Mew the title, a short description, and a photo or link for each one.</p>
+    </div>
+  </section>
+
+  <!-- 05 EXPERIENCE -->
+  <section id="experience" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">05</p>
+        <h2>Experience</h2>
+        <p>Work, internships, and other experience will be added here.</p>
+      </div>
+      <div class="empty-card">
+        <span class="tag tag-add">To add</span>
+        <h3>Experience — to add</h3>
+        <p>No experience entries have been added yet. Send Mew the role, organisation, and dates for any experience you'd like shown, and it will be added here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">06</p>
+        <h2>Education</h2>
+        <p>Bachelor of Media &amp; Communication at Albukhary International University, Malaysia — 2026 – Present, first year, fully funded Albukhary Foundation Scholar, graduating December 2029. Before AIU: Alim (Higher Secondary Certificate, Equivalent) in 2024 and Dakhil (Secondary School Certificate, Equivalent) in 2022, both with GPA 5.00 / 5.00.</p>
+      </div>
+      <div class="timeline">
+        <article class="card tl-item">
+          <div class="tl-date">2026 – Present</div>
+          <div>
+            <span class="tag tag-type">Current · Fully Funded Scholar</span>
+            <h3>Bachelor of Media &amp; Communication (BMC)</h3>
+            <p class="where">Albukhary International University, Malaysia</p>
+            <p class="desc">First-year BMC student (2026 – Present) and <strong>fully funded Albukhary Foundation Scholar</strong>. Expected graduation: <strong>December 2029</strong>. Interests in editing and public relations.</p>
+          </div>
+        </article>
+        <article class="card tl-item">
+          <div class="tl-date">2024</div>
+          <div>
+            <span class="tag tag-type">Completed · GPA 5.00 / 5.00</span>
+            <h3>Alim — Higher Secondary Certificate (Equivalent)</h3>
+            <p class="where">Tamirul Millat Kamil Madrasha, Tongi, Gazipur, Bangladesh</p>
+            <p class="desc">Completed in <strong>2024</strong> under the <strong>Bangladesh Madrasah Education Board</strong> with <strong>GPA 5.00 / 5.00</strong>.</p>
+          </div>
+        </article>
+        <article class="card tl-item">
+          <div class="tl-date">2022</div>
+          <div>
+            <span class="tag tag-type">Completed · GPA 5.00 / 5.00</span>
+            <h3>Dakhil — Secondary School Certificate (Equivalent)</h3>
+            <p class="where">Islamia Alia Kamil Madrasah, Chawkbazar, Comilla, Bangladesh</p>
+            <p class="desc">Completed in <strong>2022</strong> under the <strong>Bangladesh Madrasah Education Board</strong> with <strong>GPA 5.00 / 5.00</strong>.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 LEADERSHIP & COMMUNITY SERVICE -->
+  <section id="leadership" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">07</p>
+        <h2>Leadership &amp; community service</h2>
+        <p>Leadership roles held from 2023 to 2025 — in photography and student journalism, before starting university.</p>
+      </div>
+      <div class="timeline">
+        <article class="card tl-item">
+          <div class="tl-date">2023 – 2025</div>
+          <div>
+            <span class="tag tag-type">Leadership · Photography</span>
+            <h3>General Secretary</h3>
+            <p class="where">Millat Photography Club</p>
+            <p class="desc">Served as <strong>General Secretary</strong> of the <strong>Millat Photography Club</strong> during <strong>2023–2025</strong> — a leadership and community service role supporting the club and its photography activities.</p>
+          </div>
+        </article>
+        <article class="card tl-item">
+          <div class="tl-date">2023 – 2025</div>
+          <div>
+            <span class="tag tag-type">Leadership · Journalism</span>
+            <h3>Assistant Director</h3>
+            <p class="where">Millat Journalist Forum</p>
+            <p class="desc">Served as <strong>Assistant Director</strong> of the <strong>Millat Journalist Forum</strong> during <strong>2023–2025</strong> — a leadership and community service role supporting the forum and its student journalism work.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 HONORS & AWARDS -->
+  <section id="honors">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">08</p>
+        <h2>Honors &amp; awards</h2>
+        <p>Honors and awards will be added here.</p>
+      </div>
+      <div class="empty-card">
+        <span class="tag tag-add">To add</span>
+        <h3>Honors &amp; awards — to add</h3>
+        <p>No honors or awards have been added yet. Send Mew the name of any honor or award and the year, and it will be listed here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 SKILLS -->
+  <section id="skills" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">09</p>
+        <h2>Skills</h2>
+        <p>Photography &amp; film, content &amp; audio, three languages, and research — with editing and public relations as my focus areas.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="card skill-card">
+          <h3>Photography &amp; Film</h3>
+          <p>Documentary and event work — shooting, directing, and finishing films through to the final grade.</p>
+          <div class="skill-tags">
+            <span class="skill-tag real">Documentary &amp; event photography</span>
+            <span class="skill-tag real">Directing</span>
+            <span class="skill-tag real">Cinematography (Canon C-Log, 4K)</span>
+            <span class="skill-tag real">Editing &amp; colour grading (DaVinci Resolve, Adobe Premiere Pro)</span>
+          </div>
+        </div>
+        <div class="card skill-card">
+          <h3>Content &amp; Audio</h3>
+          <p>Producing and shaping content for audiences — audio, scripts, social media, and short-form video.</p>
+          <div class="skill-tags">
+            <span class="skill-tag real">Podcast production</span>
+            <span class="skill-tag real">Scriptwriting</span>
+            <span class="skill-tag real">Social media management</span>
+            <span class="skill-tag real">Subtitles &amp; captions</span>
+            <span class="skill-tag real">Short-form video (CapCut, Canva)</span>
+          </div>
+        </div>
+        <div class="card skill-card">
+          <h3>Languages</h3>
+          <p>The languages I work and communicate in.</p>
+          <div class="skill-tags">
+            <span class="skill-tag real">Bengali (native)</span>
+            <span class="skill-tag real">English (fluent)</span>
+            <span class="skill-tag real">Malay (conversational)</span>
+          </div>
+        </div>
+        <div class="card skill-card">
+          <h3>Research</h3>
+          <p>Academic research skills — from data analysis to writing up findings.</p>
+          <div class="skill-tags">
+            <span class="skill-tag real">Data analysis (Python / R / NLP)</span>
+            <span class="skill-tag real">Academic writing (APA 7th)</span>
+            <span class="skill-tag real">Literature review</span>
+            <span class="skill-tag real">Qualitative observation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 PHOTO GALLERY -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">10</p>
+        <h2>Photo gallery</h2>
+      </div>
+      <div id="galleryGrid">
+        <div class="gallery-portrait">
+          <button type="button" class="g-item portrait" aria-label="View photo">
+            <img src="assets/gallery-shafiq-back.jpg" alt="Shafiq seen from behind, wearing a jersey with his name and the number 88" width="1365" height="2047" loading="lazy" />
+          </button>
+          <button type="button" class="g-item portrait" aria-label="View photo">
+            <img src="assets/gallery-shafiq-front-1.jpg" alt="Shafiq facing the camera, wearing a jersey with the number 88" width="1228" height="1842" loading="lazy" />
+          </button>
+          <button type="button" class="g-item portrait" aria-label="View photo">
+            <img src="assets/gallery-shafiq-front-2.jpg" alt="Shafiq facing the camera with his hands on his hips, wearing a jersey with the number 88" width="1201" height="1801" loading="lazy" />
+          </button>
+          <button type="button" class="g-item portrait" aria-label="View photo">
+            <img src="assets/gallery-thai-flag.jpg" alt="A young woman in a beige hijab with a small Thai flag in front of her" width="1365" height="2047" loading="lazy" />
+          </button>
+        </div>
+        <div class="gallery-landscape">
+          <button type="button" class="g-item landscape" aria-label="View photo">
+            <img src="assets/gallery-thai-stall.jpg" alt="Three students at a Thai stall for Ambereed Thailand, holding up woven products" width="1581" height="1054" loading="lazy" />
+          </button>
+          <button type="button" class="g-item landscape" aria-label="View photo">
+            <img src="assets/gallery-chess.jpg" alt="Two students sitting at a chess board, both giving a thumbs up" width="1493" height="995" loading="lazy" />
+          </button>
+          <button type="button" class="g-item landscape" aria-label="View photo">
+            <img src="assets/gallery-group.jpg" alt="A group of students posing together and smiling for the camera" width="1471" height="980" loading="lazy" />
+          </button>
+          <button type="button" class="g-item landscape" aria-label="View photo">
+            <img src="assets/gallery-blue-sweater.jpg" alt="Portrait of a young man in a blue patterned sweater, leaning towards the camera" width="1744" height="1162" loading="lazy" />
+          </button>
+          <button type="button" class="g-item landscape" aria-label="View photo">
+            <img src="assets/gallery-chess-2.jpg" alt="Two students sitting at a chess board, both giving a thumbs up" width="4096" height="2731" loading="lazy" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Photo viewer">
+    <button class="lb-close" id="lbClose" type="button" aria-label="Close">×</button>
+    <button class="lb-prev" id="lbPrev" type="button" aria-label="Previous photo">‹</button>
+    <figure class="lb-fig">
+      <img id="lbImg" src="assets/gallery-thai-stall.jpg" alt="">
+    </figure>
+    <button class="lb-next" id="lbNext" type="button" aria-label="Next photo">›</button>
+  </div>
+
+  <!-- 11 CURRICULUM VITAE -->
+  <section id="cv" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">11</p>
+        <h2>Curriculum vitae</h2>
+        <p>A CV will be added here.</p>
+      </div>
+      <div class="empty-card">
+        <span class="tag tag-add">To add</span>
+        <h3>Curriculum vitae — to add</h3>
+        <p>No CV has been added yet. Send Mew your CV when it's ready and a link to view or download it will be placed here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 CONTACT + CHECKLIST -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">12</p>
+        <h2>Contact</h2>
+        <p>Open to research collaboration, media projects, and conversations about visual storytelling.</p>
+      </div>
+
+      <!-- BOOK A SESSION -->
+      <div class="card booking-card" id="book">
+        <div>
+          <h3>Book a session with me</h3>
+          <p>Free 20–30 minute peer mentoring — career guidance, academic help, or higher-study planning. Fill in the form and I'll confirm a time by email.</p>
+          <p class="booking-count-line"><span id="booking-count">2</span> sessions booked so far</p>
+        </div>
+        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSe7O9HiodLMz854rY4QDFvGXrCVp8ZWJmUneaKGp22J7FFAtA/viewform" target="_blank" rel="noopener noreferrer">Book a free session</a>
+      </div>
+
+      <div class="contact-cards">
+        <div class="card contact-card">
+          <span class="contact-label">Email</span>
+          <span class="contact-value"><a href="mailto:withfaisal101@gmail.com">withfaisal101@gmail.com</a></span>
+        </div>
+        <div class="card contact-card">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value pending">To add</span>
+        </div>
+        <div class="card contact-card">
+          <span class="contact-label">ORCID</span>
+          <span class="contact-value pending">To add</span>
+        </div>
+        <div class="card contact-card">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value pending">To add</span>
+        </div>
+        <div class="card contact-card">
+          <span class="contact-label">Location</span>
+          <span class="contact-value">Alor Setar, Kedah, Malaysia</span>
+        </div>
+        <div class="card contact-card">
+          <span class="contact-label">Facebook</span>
+          <span class="contact-value pending">To add</span>
+        </div>
+        <div class="card contact-card">
+          <span class="contact-label">Instagram</span>
+          <span class="contact-value pending">To add</span>
+        </div>
+      </div>
+
+      <div class="card checklist" style="margin-top:20px">
+          <h3>To complete this portfolio, send Mew:</h3>
+          <p>You don't need everything at once — send what you have, and we'll fill the sections in step by step.</p>
+          <div class="check-grid" style="grid-template-columns:1fr;">
+            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Photo — added</strong><span>Your profile photo is now at the top of the page.</span></div></div>
+            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Short about you</strong><span>3–5 sentences, or just rough notes — Mew can help you shape them.</span></div></div>
+            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Programme &amp; university — added</strong><span>BMC, 2026 – Present, at Albukhary International University, Malaysia. Fully funded Albukhary Foundation Scholar, expected graduation December 2029. CGPA can still be added if you want it shown.</span></div></div>
+            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Previous education — added</strong><span>Alim (Higher Secondary Certificate, Equivalent), 2024 — Tamirul Millat Kamil Madrasha, Tongi, Bangladesh. Dakhil (Secondary School Certificate, Equivalent), 2022 — Islamia Kamil Madrasha, Cumilla, Bangladesh. Both under the Bangladesh Madrasah Education Board, GPA 5.00 / 5.00, now shown in Education.</span></div></div>
+            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Scholarship &amp; graduation — added</strong><span>Fully funded Albukhary Foundation Scholar — expected graduation December 2029, now shown in the hero, About, Education, and Contact sections.</span></div></div>
+            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Leadership &amp; community service — added</strong><span>General Secretary, Millat Photography Club, and Assistant Director, Millat Journalist Forum, 2023–2025 — now shown in the new Leadership section, hero, About, Quick Facts, and Skills.</span></div></div>
+            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Skills — added</strong><span>Photography &amp; Film, Content &amp; Audio, Languages (Bengali native, English fluent, Malay conversational), and Research — now shown in the Skills section and Quick Facts.</span></div></div>
+            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Projects</strong><span>Titles and short descriptions for anything you want to show.</span></div></div>
+            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Research</strong><span>Your research interests, and any publications or works in progress.</span></div></div>
+            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Articles</strong><span>Titles, where they were published, and links for any articles.</span></div></div>
+            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Experience</strong><span>Roles, organisations, and dates for any experience.</span></div></div>
+            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Honors &amp; awards</strong><span>Names and years of any honors or awards.</span></div></div>
+            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Photo gallery — added</strong><span>Nine photos are now shown in the Photo gallery section, each with a short caption.</span></div></div>
+            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>Curriculum vitae</strong><span>Your CV, to link from the Curriculum vitae section.</span></div></div>
+            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Booking — added</strong><span>Free 20–30 minute peer-mentoring sessions — career guidance, academic help, or higher-study planning. The “Book a free session” button in the booking card above opens the Google Form “Book a session with Abdullah Mohammad Faisal” — every submitted request is saved in the form so bookings can be counted, and you confirm a time by email.</span></div></div>
+            <div class="check-item"><div class="box done" aria-hidden="true">✓</div><div><strong>Email — added</strong><span>withfaisal101@gmail.com is now on the page. LinkedIn is still to add when you're ready.</span></div></div>
+            <div class="check-item"><div class="box" aria-hidden="true"></div><div><strong>LinkedIn</strong><span>Your LinkedIn link, if you want it shown publicly.</span></div></div>
+          </div>
+        </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span><strong>Abdullah Mohammad Faisal</strong> — Portfolio</span>
+    <span>BMC · First Year · AIU · Albukhary Foundation Scholar · Class of Dec 2029</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    var sections = links.map(function(a){
+      var id = a.getAttribute('href');
+      return { link: a, el: document.querySelector(id) };
+    }).filter(function(s){ return s.el; });
+
+    function onScroll(){
+      var y = window.scrollY + 120;
+      var current = sections[0];
+      sections.forEach(function(s){
+        if (s.el.offsetTop <= y) current = s;
+      });
+      links.forEach(function(a){ a.classList.remove('active'); });
+      if (current) current.link.classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+<script>
+  /* Photo gallery — lightbox viewer */
+  (function(){
+    "use strict";
+    var grid = document.getElementById("galleryGrid");
+    if (!grid) return;
+    var items = Array.prototype.slice.call(grid.querySelectorAll(".g-item"));
+
+    var lb = document.getElementById("lightbox");
+    var lbImg = document.getElementById("lbImg");
+    var lbList = [], lbIdx = 0;
+
+    function showLB(){
+      var item = lbList[lbIdx];
+      var img = item.querySelector("img");
+      lbImg.src = img.getAttribute("src");
+      lbImg.alt = img.getAttribute("alt");
+    }
+    function openLB(item){
+      lbList = items.slice();
+      lbIdx = lbList.indexOf(item);
+      if (lbIdx < 0) lbIdx = 0;
+      showLB();
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeLB(){
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+    function step(d){
+      lbIdx = (lbIdx + d + lbList.length) % lbList.length;
+      showLB();
+    }
+    items.forEach(function(it){
+      it.addEventListener("click", function(){ openLB(it); });
+    });
+    document.getElementById("lbClose").addEventListener("click", closeLB);
+    document.getElementById("lbPrev").addEventListener("click", function(e){ e.stopPropagation(); step(-1); });
+    document.getElementById("lbNext").addEventListener("click", function(e){ e.stopPropagation(); step(1); });
+    lb.addEventListener("click", function(e){ if (e.target === lb) closeLB(); });
+    document.addEventListener("keydown", function(e){
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") closeLB();
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    });
+  })();
+</script>
+</body>
+</html>
