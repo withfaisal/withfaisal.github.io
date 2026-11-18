@@ -410,6 +410,20 @@
   .contact-value a:hover{color:var(--accent-ink)}
   .contact-value.pending{color:var(--ink-3); font-weight:500; font-style:italic}
 
+  /* Scan to connect — QR cards */
+  .qr-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:760px}
+  @media (max-width:520px){ .qr-grid{gap:12px} }
+  .qr-card{padding:28px 24px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; color:var(--ink)}
+  a.qr-card{transition:border-color .15s ease}
+  a.qr-card:hover{text-decoration:none; border-color:var(--accent)}
+  .qr-card img.qr-img{width:180px; height:180px; max-width:100%; object-fit:contain; display:block; border-radius:10px; background:#fff; border:1px solid var(--line); padding:8px}
+  @media (max-width:520px){ .qr-card{padding:18px 12px} .qr-card img.qr-img{width:140px; height:140px} }
+  .qr-placeholder{width:180px; height:180px; max-width:100%; aspect-ratio:1; border:1.5px dashed var(--dash); border-radius:10px; background:var(--surface-2); display:flex; align-items:center; justify-content:center; color:var(--ink-3); font-size:.85rem; font-weight:600; padding:12px; text-align:center}
+  @media (max-width:520px){ .qr-placeholder{width:140px; height:140px} }
+  .qr-label{font-family:"Source Serif 4", Georgia, serif; font-size:1.2rem; font-weight:700; line-height:1.2; margin:4px 0 0}
+  .qr-sub{font-size:.95rem; color:var(--ink-3); margin:0}
+  .qr-sub.pending{font-style:italic}
+
   footer{
     border-top:1px solid var(--line); padding:28px 0 36px; color:var(--ink-3); font-size:.88rem;
   }
@@ -853,6 +867,29 @@
         <div class="card contact-card">
           <span class="contact-label">Instagram</span>
           <span class="contact-value pending">To add</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 SCAN TO CONNECT -->
+  <section id="scan" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-num">13</p>
+        <h2>Scan to connect</h2>
+        <p>Scan a code to reach me on WhatsApp or Instagram.</p>
+      </div>
+      <div class="qr-grid">
+        <a class="card qr-card" href="https://wa.me/60132344929" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp — +60132344929">
+          <img class="qr-img" src="assets/qr-whatsapp.png" alt="WhatsApp QR code for +60132344929" width="180" height="180" loading="lazy" />
+          <p class="qr-label">WhatsApp</p>
+          <p class="qr-sub">+60132344929</p>
+        </a>
+        <div class="card qr-card">
+          <div class="qr-placeholder" aria-hidden="true">QR code — to add</div>
+          <p class="qr-label">Instagram</p>
+          <p class="qr-sub pending">Instagram — To add</p>
         </div>
       </div>
     </div>
